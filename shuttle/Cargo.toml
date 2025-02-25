@@ -1,0 +1,18 @@
+[package]
+name = "shuttle"
+version.workspace = true
+edition.workspace = true
+description.workspace = true
+authors.workspace = true
+readme.workspace = true
+repository.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+dotenvy = "0.15.7"
+pavex = "0.1.76"
+server = { path = "../server" }
+server_sdk = { path = "../server_sdk" }
+shuttle-runtime = "0.52.0"
+tracing = "0.1.41"

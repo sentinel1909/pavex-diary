@@ -1,5 +1,5 @@
 [workspace]
-members = ["app", "server_sdk", "server", "workspace_hack"]
+members = ["app", "server_sdk", "server", "workspace_hack", "shuttle"]
 # By setting `server` as the default member, `cargo run` will default to running the server binary
 # when executed from the root of the workspace.
 # Otherwise, you would have to use `cargo run --bin server` to run the server binary.
@@ -7,9 +7,9 @@ default-members = ["server"]
 resolver = "2"
 
 [workspace.package]
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
-description = "A diary for documenting my journey with the Pavex web framework"
+description = "A diary for documenting my journey with the Pavex web framework, hosted on Shuttle"
 authors = ["Jeffery D. Mitchell", "<sentinel1909@jeff-mitchell.dev>"]
 readme = "README.md"
 repository = "https://github.com/sentinel1909/pavex-diary.git"
