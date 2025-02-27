@@ -98,7 +98,7 @@ checksum = "6b964d184e89d9b6b67dd2715bc8e74cf3107fb2b529990c90cf517326150bf4"
 
 [[package]]
 name = "app"
-version = "0.2.1"
+version = "0.2.0"
 dependencies = [
  "cargo_px_env",
  "pavex",
@@ -1954,7 +1954,7 @@ dependencies = [
 
 [[package]]
 name = "server"
-version = "0.2.1"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "app",
@@ -2027,7 +2027,7 @@ checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
 name = "shuttle"
-version = "0.2.1"
+version = "0.2.0"
 dependencies = [
  "dotenvy",
  "pavex",

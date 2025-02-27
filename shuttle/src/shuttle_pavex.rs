@@ -2,7 +2,6 @@
 
 // dependencies
 use pavex::server::Server;
-use server::configuration::Config;
 use server_sdk::{build_application_state, run};
 use shuttle_runtime::{Error, Service};
 use std::net::SocketAddr;
@@ -11,7 +10,7 @@ use std::net::SocketAddr;
 pub type ShuttlePavex = Result<PavexService, Error>;
 
 // A wrapper type for a Pavex Server, so we can implement shuttle_runtime::Service for it.
-pub struct PavexService(pub Server, pub Config);
+pub struct PavexService(pub Server);
 
 #[shuttle_runtime::async_trait]
 impl Service for PavexService {
@@ -24,7 +23,6 @@ impl Service for PavexService {
             .await
             .expect("Failed to bind the server TCP listener");
 
-        tracing::info!("{:?}", self.1);
         tracing::info!("Starting to listen for incoming requests at: {}", addr);
 
         run(server, application_state).await;
