@@ -24,7 +24,7 @@ impl Service for PavexService {
             .await
             .expect("Failed to bind the server TCP listener");
 
-        tracing::info!("Configured for: {:?}", self.1);
+        tracing::info!("{:?}", self.1);
         tracing::info!("Starting to listen for incoming requests at: {}", addr);
 
         run(server, application_state).await;
