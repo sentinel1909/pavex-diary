@@ -1,0 +1,3 @@
+# The Pavex Diary
+
+Welcome!

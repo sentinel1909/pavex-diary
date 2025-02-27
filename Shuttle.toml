@@ -1,0 +1,7 @@
+# Deployment files
+
+[build]
+assets = [
+  "content/*",
+  "templates/*"
+]

@@ -25,7 +25,13 @@ impl TestApi {
             .expect("The server TCP listener doesn't have a local socket address");
         let server_builder = Server::new().listen(tcp_listener);
 
-        tokio::spawn(async move { run(server_builder, application_state).await });
+        tokio::spawn(async move {
+            run(
+                server_builder,
+                application_state.expect("Unable to build Tera template."),
+            )
+            .await
+        });
 
         TestApi {
             api_address: format!("http://{}:{}", config.server.ip, address.port()),
@@ -69,6 +75,14 @@ impl TestApi {
     pub async fn get_ping(&self) -> reqwest::Response {
         self.api_client
             .get(format!("{}/api/ping", &self.api_address))
+            .send()
+            .await
+            .expect("Failed to execute request.")
+    }
+
+    pub async fn get_index(&self) -> reqwest::Response {
+        self.api_client
+            .get(format!("{}/", &self.api_address))
             .send()
             .await
             .expect("Failed to execute request.")
