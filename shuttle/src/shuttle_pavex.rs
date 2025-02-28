@@ -27,7 +27,12 @@ impl Service for PavexService {
 
         tracing::info!("Starting to listen for incoming requests at: {}", addr);
 
-        run(server, application_state.map_err(|e| CustomError::new(e).context("Unable to build Tera templates."))?).await;
+        run(
+            server,
+            application_state
+                .map_err(|e| CustomError::new(e).context("Unable to build Tera templates."))?,
+        )
+        .await;
 
         Ok(())
     }

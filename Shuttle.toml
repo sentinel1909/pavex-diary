@@ -3,5 +3,6 @@
 [build]
 assets = [
   "content/*",
+  "static/*",
   "templates/*"
 ]

@@ -17,6 +17,6 @@ async fn index_works() {
     assert_eq!(response_header_str, expected_header);
 
     let response_body = response.text().await.unwrap();
-    
+
     assert!(response_body.contains("<!DOCTYPE html>"));
 }

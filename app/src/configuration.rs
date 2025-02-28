@@ -20,8 +20,8 @@ impl AppConfig {
     }
 }
 
-// struct type to represent the Template storage configuration
+// struct type to represent the emplate storage configuration
 #[derive(serde::Deserialize, Clone, Debug)]
 pub struct TemplateConfig {
-    pub dir: Cow<'static, str>
+    pub dir: Cow<'static, str>,
 }
