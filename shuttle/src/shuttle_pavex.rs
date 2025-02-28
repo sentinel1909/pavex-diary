@@ -2,6 +2,7 @@
 
 // dependencies
 use pavex::server::Server;
+use server::configuration::Config;
 use server_sdk::{build_application_state, run};
 use shuttle_runtime::{CustomError, Error, Service};
 use std::net::SocketAddr;
@@ -15,7 +16,8 @@ pub struct PavexService(pub Server);
 #[shuttle_runtime::async_trait]
 impl Service for PavexService {
     async fn bind(mut self, addr: SocketAddr) -> Result<(), Error> {
-        let application_state = build_application_state().await;
+        let config = Config::load(None)?;
+        let application_state = build_application_state(&config.app).await;
 
         let server = self
             .0

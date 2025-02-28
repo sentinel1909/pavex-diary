@@ -1,6 +1,7 @@
 // app/src/template.rs
 
 // dependencies
+use crate::configuration::AppConfig;
 use pulldown_cmark::{Options, Parser, html::push_html};
 use tera::{Error, Tera};
 
@@ -15,8 +16,10 @@ pub fn markdown_to_html(md_content: &str) -> String {
 }
 
 // constructor to compile Tera templates
-pub fn compile_templates() -> Result<Tera, Error> {
-    let mut templates = Tera::new("templates/**/*")?;
-    templates.add_template_files(vec![("templates/base.html", Some("base"))])?;
+pub fn compile_templates(config: &AppConfig) -> Result<Tera, Error> {
+    let templates_dir = config.templates.dir.as_ref();
+    let templates_pattern = format!("{}/**/*", templates_dir);
+    let mut templates = Tera::new(&templates_pattern)?;
+    templates.add_template_files(vec![(format!("{}/base.html", templates_dir), Some("base"))])?;
     Ok(templates)
 }

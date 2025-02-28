@@ -14,24 +14,23 @@ pub enum ApplicationStateError {
     #[error(transparent)]
     CompileTemplates(tera::Error),
 }
-pub async fn build_application_state() -> Result<
-    crate::ApplicationState,
-    crate::ApplicationStateError,
-> {
-    let v0 = app::template::compile_templates();
-    let v1 = match v0 {
+pub async fn build_application_state(
+    v0: &app::configuration::AppConfig,
+) -> Result<crate::ApplicationState, crate::ApplicationStateError> {
+    let v1 = app::template::compile_templates(v0);
+    let v2 = match v1 {
         Ok(ok) => ok,
-        Err(v1) => {
+        Err(v2) => {
             return {
-                let v2 = crate::ApplicationStateError::CompileTemplates(v1);
-                core::result::Result::Err(v2)
+                let v3 = crate::ApplicationStateError::CompileTemplates(v2);
+                core::result::Result::Err(v3)
             };
         }
     };
-    let v2 = crate::ApplicationState {
-        tera: v1,
+    let v3 = crate::ApplicationState {
+        tera: v2,
     };
-    core::result::Result::Ok(v2)
+    core::result::Result::Ok(v3)
 }
 pub fn run(
     server_builder: pavex::server::Server,
