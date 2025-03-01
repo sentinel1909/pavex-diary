@@ -1,12 +1,12 @@
 // app/arc/static_files.rs
 
 // dependencies
+use crate::configuration::AppConfig;
 use mime_guess::from_path;
 use pavex::http::HeaderValue;
 use pavex::request::RequestHead;
 use pavex::response::Response;
 use std::borrow::Cow;
-use std::env::current_dir;
 use std::fs::File;
 use std::io::{Error, ErrorKind, Read};
 use std::path::{Component::Normal, Path, PathBuf};
@@ -54,8 +54,8 @@ fn safe_join_paths(base_dir: &Path, requested_path: &str) -> Result<PathBuf, Err
 
 // methods for the StaticAsset type
 impl StaticFile {
-    pub async fn new(request_head: &RequestHead) -> Result<Self, Error> {
-        let base_dir = current_dir()?;
+    pub async fn new(config: &AppConfig, request_head: &RequestHead) -> Result<Self, Error> {
+        let base_dir = Path::new(config.assets.dir.as_ref());
         let path = request_head.target.path().trim_start_matches('/');
 
         if path.contains("..") {
@@ -65,7 +65,7 @@ impl StaticFile {
             ));
         }
 
-        let file_path = safe_join_paths(&base_dir, path)?;
+        let file_path = safe_join_paths(base_dir, path)?;
 
         let mut file = File::open(&file_path)?;
         let mut contents = Vec::new();

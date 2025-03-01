@@ -22,9 +22,9 @@ unexpected_cfgs = { level = "allow", check-cfg = ['cfg(pavex_ide_hint)'] }
 [dependencies]
 cargo_px_env = "0.1"
 mime_guess = "2.0.5"
-pavex = { version = "0.1.77" }
-pavex_tracing = { version = "0.1.77" }
-pavex_cli_client = { version = "0.1.77" }
+pavex = { version = "0.1.78" }
+pavex_tracing = { version = "0.1.78" }
+pavex_cli_client = { version = "0.1.78" }
 pulldown-cmark = "0.13.0"
 tera = "1.20.0"
 tracing = "0.1"

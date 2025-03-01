@@ -6,3 +6,5 @@ server:
   port: 8000
 templates:
   dir: "templates"
+assets:
+  dir: "static"
