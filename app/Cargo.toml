@@ -27,6 +27,7 @@ pavex_tracing = { version = "0.1.78" }
 pavex_cli_client = { version = "0.1.78" }
 pulldown-cmark = "0.13.0"
 tera = "1.20.0"
+tokio = { version = "1.43.0", features = [ "fs", "io-util" ] }
 tracing = "0.1"
 tracing_log_error = "0.1"
 serde = { version = "1", features = ["derive"] }

@@ -98,7 +98,7 @@ checksum = "6b964d184e89d9b6b67dd2715bc8e74cf3107fb2b529990c90cf517326150bf4"
 
 [[package]]
 name = "app"
-version = "0.5.2"
+version = "0.6.0"
 dependencies = [
  "cargo_px_env",
  "mime_guess",
@@ -108,6 +108,7 @@ dependencies = [
  "pulldown-cmark",
  "serde",
  "tera",
+ "tokio",
  "tracing",
  "tracing_log_error",
  "workspace_hack",
@@ -2087,7 +2088,7 @@ dependencies = [
 
 [[package]]
 name = "server"
-version = "0.5.2"
+version = "0.6.0"
 dependencies = [
  "anyhow",
  "app",

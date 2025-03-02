@@ -11,7 +11,7 @@ async fn static_files_works() {
 
     for (filename, expected_content_type) in test_cases.iter() {
         let response = api.get_static_asset(filename).await;
-        
+
         assert_eq!(
             response.status(),
             StatusCode::OK,
