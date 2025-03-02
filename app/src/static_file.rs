@@ -8,8 +8,8 @@ use pavex::request::RequestHead;
 use pavex::response::Response;
 use std::borrow::Cow;
 use std::path::{Path, PathBuf};
-use tokio::fs::File;
-use tokio::io::{AsyncReadExt, Error};
+use tokio::fs::read;
+use tokio::io::Error;
 
 // struct type to represent a static asset, CCSS, JS, an image, or anything else
 #[derive(Debug, Clone)]
@@ -37,9 +37,7 @@ impl StaticFile {
         let mut file_path = PathBuf::from(assets_subdir);
         file_path.push(filename);
 
-        let mut file = File::open(&file_path).await?;
-        let mut contents = Vec::new();
-        file.read_to_end(&mut contents).await?;
+        let contents: Vec<u8> = read(&file_path).await?;
 
         let mime_type = from_path(&file_path)
             .first_or_octet_stream()
