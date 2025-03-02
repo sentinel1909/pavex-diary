@@ -2,3 +2,7 @@ server:
   ip: "0.0.0.0"
   port: 8000
   graceful_shutdown_timeout: 1 minute
+templates:
+  dir: "templates"
+assets:
+  dir: "static"

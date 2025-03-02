@@ -24,6 +24,9 @@ FROM debian:bookworm-slim AS runtime
 WORKDIR /app
 COPY --from=builder /app/target/release/server bin
 COPY server/configuration server/configuration
+COPY content content
+COPY static static
+COPY templates templates
 ENV APP_PROFILE=production
 # Enable backtraces to simplify debugging
 # production panics.
