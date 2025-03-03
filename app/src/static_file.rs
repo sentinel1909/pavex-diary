@@ -20,14 +20,16 @@ pub struct StaticFile {
 
 // error handler for the StaticFile::new() method
 pub async fn io_error2response(e: &pavex::Error) -> Response {
-    Response::internal_server_error().set_typed_body(e.to_string())
+    Response::not_found().set_typed_body(e.to_string())
 }
 
 // methods for the StaticAsset type
 impl StaticFile {
     pub async fn new(config: &AppConfig, request_head: &RequestHead) -> Result<Self, Error> {
         let assets_subdir = Path::new(config.assets.dir.as_ref());
+
         let request_target = request_head.target.path().trim_start_matches('/');
+
         let filename = Path::new(request_target)
             .file_name()
             .unwrap_or_default()
